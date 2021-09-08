@@ -1,7 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	import { supabase } from '../supabaseClient'
-	import {user} from '../sessionStore';
 
 	export let path;
 	export let size = "10em"
@@ -38,9 +37,7 @@
 
 			let { error: uploadError } = await supabase.storage
 				.from('avatars')
-				.upload(filePath, file)
-
-			if (uploadError) throw uploadError
+				.upload(`avatars/${supabase.auth.user().email}`, 	file)
 
 			path = filePath
 			dispatch('upload')

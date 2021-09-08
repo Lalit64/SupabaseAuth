@@ -1,5 +1,6 @@
 <script>
 	import {supabase} from "../../supabaseClient"
+	import { user } from '../../sessionStore';
 
 	let loading = false
 	let email;
@@ -8,14 +9,17 @@
 	const handleLogin = async () => {
 		try {
 			loading = true
-			const { error } = await supabase.auth.signIn({ email, password })
+			const { error } = await supabase.auth.signIn({ email:email, password:password })
 			if (error) throw error
-			alert('Check your email for the login link!')
 		} catch (error) {
 			alert(error.error_description || error.message)
 		} finally {
 			loading = false
 		}
+	}
+
+	if(supabase.auth.user()) {
+		location.replace('/')
 	}
 </script>
 

@@ -8,9 +8,8 @@
 	const handleLogin = async () => {
 		try {
 			loading = true
-			const { error } = await supabase.auth.signUp({ email, password })
+			const { error } = await supabase.auth.signUp({ email:email, password:password })
 			if (error) throw error
-			alert('Check your email for the login link!')
 		} catch (error) {
 			alert(error.error_description || error.message)
 		} finally {
