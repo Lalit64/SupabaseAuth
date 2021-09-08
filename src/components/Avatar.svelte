@@ -45,6 +45,7 @@
 			alert(error.message)
 		} finally {
 			uploading = false
+			location.reload()
 		}
 	}
 

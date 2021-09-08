@@ -59,8 +59,19 @@
 	}
 
 	async function signOut() {
-		await supabase.auth.signOut()
+		try {
+			loading = true;
+			let { error } = await supabase.auth.signOut();
+			if (error) console.log(error);
+		} catch (error) {
+			console.log(error.message);
+		} finally {
+			loading = false;
+		}
+
+		location.reload();
 	}
+
 </script>
 
 
@@ -97,5 +108,8 @@
 				Sign Out
 			</button>
 		</div>
+		<h2>
+			Want to go to <a href='/users/database'>User Database?</a>
+		</h2>
 	</form>
 </div>
