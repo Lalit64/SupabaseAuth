@@ -43,7 +43,7 @@
 			/>
 		</div>
 		<div>
-			<input type="submit" class='button block' value={loading ? "Loading" : "Send magic link"} disabled={loading} />
+			<input type="submit" class='button block' value={loading ? "Loading" : "Sign In"} disabled={loading} />
 		</div>
 		<h2>
 			Want to <a href='/signup'>Sign Up?</a>
